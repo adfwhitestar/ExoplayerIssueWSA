@@ -18,6 +18,9 @@ class MainActivity : AppCompatActivity() {
         binding.buttonNotExo.setOnClickListener {
             startActivity(Intent(this,NotExoPlayer::class.java))
         }
+        binding.buttonCompress.setOnClickListener {
+            startActivity(Intent(this,CompressVideoActivity::class.java))
+        }
     }
 
 }

@@ -20,7 +20,13 @@ import com.google.android.exoplayer2.util.Log
 import com.google.android.exoplayer2.util.Util
 import io.research.exoplayerwsa.databinding.ActivityVideoPlayerBinding
 
+
+
 class ExoPlayerActivity : Activity() {
+
+    companion object {
+        const val URI = "VIDEO"
+    }
 
     private lateinit var exoPlayer: ExoPlayer
     private lateinit var binding : ActivityVideoPlayerBinding
@@ -39,8 +45,14 @@ class ExoPlayerActivity : Activity() {
 
         val mediaDataSourceFactory: DataSource.Factory = DefaultDataSource.Factory(this)
 
-        val mediaSource = ProgressiveMediaSource.Factory(mediaDataSourceFactory).createMediaSource(
-            MediaItem.fromUri(getResourceUri(R.raw.halp)))
+       val item = if(intent.data != null){
+            MediaItem.fromUri(intent.data!!)
+        } else{
+           MediaItem.fromUri(getResourceUri(R.raw.halp))
+       }
+
+
+        val mediaSource = ProgressiveMediaSource.Factory(mediaDataSourceFactory).createMediaSource(item)
 
         val mediaSourceFactory: MediaSourceFactory = DefaultMediaSourceFactory(mediaDataSourceFactory)
 

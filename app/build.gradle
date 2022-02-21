@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "io.research.exoplayerwsa"
-        minSdk 21
+        minSdk 24
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -23,11 +23,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '11'
     }
     buildFeatures {
         viewBinding true
@@ -45,4 +45,10 @@ dependencies {
 
     // full exoplayer library
     implementation 'com.google.android.exoplayer:exoplayer:2.16.1'
+    //FFMpeg
+    implementation 'com.github.SimformSolutionsPvtLtd:SSffmpegVideoOperation:1.0.7'
+    implementation 'com.github.jaiselrahman:FilePicker:1.3.2'
+
+
+
 }

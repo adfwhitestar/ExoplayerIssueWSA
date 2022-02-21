@@ -22,4 +22,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonExo" />
+
+    <Button
+        android:id="@+id/buttonCompress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Open Compressor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonNotExo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
