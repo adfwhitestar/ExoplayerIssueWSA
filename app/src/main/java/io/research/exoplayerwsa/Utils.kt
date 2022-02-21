@@ -3,7 +3,9 @@ package io.research.exoplayerwsa
 import android.content.ContentResolver
 import android.content.Context
 import android.net.Uri
+import android.text.TextUtils
 import androidx.annotation.AnyRes
+import com.simform.videooperations.Common
 import java.io.File
 
 
@@ -38,4 +40,32 @@ fun deleteDir(dir: File?): Boolean {
     } else {
         false
     }
+}
+
+
+fun getFilePath(context: Context, fileExtension: String): String {
+    val dir = File(context.cacheDir.toString())
+    if (!dir.exists()) {
+        dir.mkdirs()
+    }
+    var extension: String? = null
+    when {
+        TextUtils.equals(fileExtension, Common.IMAGE) -> {
+            extension = "%03d.jpg"
+        }
+        TextUtils.equals(fileExtension, Common.VIDEO) -> {
+            extension = ".mp4"
+        }
+        TextUtils.equals(fileExtension, Common.GIF) -> {
+            extension = ".gif"
+        }
+        TextUtils.equals(fileExtension, Common.MP3) -> {
+            extension = ".mp3"
+        }
+    }
+    val dest = File(
+        dir.path + File.separator + Common.OUT_PUT_DIR + System.currentTimeMillis()
+            .div(1000L) + extension
+    )
+    return dest.absolutePath
 }

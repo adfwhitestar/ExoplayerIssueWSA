@@ -41,6 +41,7 @@ class CompressVideoActivity : AppCompatActivity(R.layout.activity_compress_video
         binding.btnCompress.setOnClickListener(this)
         binding.btnOpenOrgInExo.setOnClickListener(this)
         binding.btnOpenCompressedInExo.setOnClickListener(this)
+        binding.btnClearCache.setOnClickListener(this)
     }
 
 
@@ -83,6 +84,12 @@ class CompressVideoActivity : AppCompatActivity(R.layout.activity_compress_video
                     data = orgFilePath?.toUri()
                 })
             }
+            R.id.btnClearCache -> {
+                this.deleteCache()
+                compFilePath = null
+                orgFilePath = null
+                Toast.makeText(this,"Cache Cleared",Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -119,32 +126,7 @@ class CompressVideoActivity : AppCompatActivity(R.layout.activity_compress_video
         }
     }
 
-    fun getFilePath(context: Context, fileExtension: String): String {
-        val dir = File(context.cacheDir.toString())
-        if (!dir.exists()) {
-            dir.mkdirs()
-        }
-        var extension: String? = null
-        when {
-            TextUtils.equals(fileExtension, Common.IMAGE) -> {
-                extension = "%03d.jpg"
-            }
-            TextUtils.equals(fileExtension, Common.VIDEO) -> {
-                extension = ".mp4"
-            }
-            TextUtils.equals(fileExtension, Common.GIF) -> {
-                extension = ".gif"
-            }
-            TextUtils.equals(fileExtension, Common.MP3) -> {
-                extension = ".mp3"
-            }
-        }
-        val dest = File(
-            dir.path + File.separator + Common.OUT_PUT_DIR + System.currentTimeMillis()
-                .div(1000L) + extension
-        )
-        return dest.absolutePath
-    }
+
 
     private fun compressProcess() {
         val outputPath = getFilePath(this, Common.VIDEO)
